@@ -7,7 +7,7 @@ var addBtn = document.getElementById("addBtn");
 
 var expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 
-//add
+//add to localstorage
 
 const addExpense = () => {
   if (
@@ -23,15 +23,16 @@ const addExpense = () => {
       name: expenseName.value,
       amount: expenseAmount.value,
     });
-
     localStorage.setItem("expenses", JSON.stringify(expenses));
-    console.log("localstorage added")
   }
 };
 
+addBtn.onclick = addExpense;
+
+//add to UI
+
 expenses.forEach((expense) => {
   const tr = document.createElement("tr");
-  console.log("tr created");
   tr.innerHTML = `
     <tr>
               <td>${expense.type}</td>
@@ -39,36 +40,24 @@ expenses.forEach((expense) => {
               <td>${expense.date}</td>
               <td>${expense.amount}</td>
               <td class="expense-options">
-                  <button onclick="editExpense()"><i class="fa-solid fa-pen-to-square"></i></button>
-                  <button  id=${expense.id} onclick="deleteExpense(this)"><i class="fa-solid fa-trash"></i></button>
+                  <button id=${expense.id} onclick="deleteExpense(this)"><i class="fa-solid fa-trash"></i></button>
               </td>
             </tr>
 `;
-
   expenseTable.appendChild(tr);
-
-  console.log("tr appended")
 });
 
-addBtn.onclick = addExpense;
-
-//delete
+// delete from storage&UI
 
 const deleteExpense = (element) => {
   const expenseRow = element.parentNode.parentNode;
   expenseRow.remove();
 
   expenses.forEach((expense) => {
-    if (expense.id == element.id) {
-      const index = expenses.indexOf(expense)
-      expenses.splice(index, 1)
+    if (expense.id === +element.id) {
+      expenses.splice(expenses.indexOf(expense), 1);
       localStorage.setItem("expenses", JSON.stringify(expenses));
     }
   });
 };
 
-//edit
-
-const editExpense = () => {
-  console.log("edit");
-};

@@ -9,7 +9,10 @@
       href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
     <link rel="stylesheet" href="./assets/css/index.css" />
   </head>
   <body>
@@ -17,7 +20,7 @@
       <h1 class="title">Expense Tracker App</h1>
     </header>
     <main>
-      <section class="content">
+      <section class="main-content">
         <h3 class="secondTitle">Add a new item:</h3>
         <div class="form">
           <form id="expForm">
@@ -60,10 +63,18 @@
               <th>Options</th>
             </tr>
           </thead>
-          <tbody id="expenseTable">
-            
-          </tbody>
+          <tbody id="expenseTable"></tbody>
         </table>
+      </section>
+
+      <section class="edit-modal" id="editModal">
+        <div class="modal-content" id="modalContent">
+          <div class="exit-modal">
+            <button id="exitModal"><i class="fa-solid fa-x"></i></button>
+          </div>
+
+          
+        </div>
       </section>
     </main>
     <script src="./assets/js/main.js"></script>
